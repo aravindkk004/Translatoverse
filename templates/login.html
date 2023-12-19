@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../static/css/login.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+	<title>Login page</title>
+</head>
+<body>
+	<div class="container">
+		<div class="left">
+		</div>
+		<div class="right">
+			<div class="header">
+				<p id="head">Reconnect with your <span>language world.</span></p>
+				<p id="head1"><span>Login</span> and explore.</p>
+			</div>
+			<form action="/login" method="post">
+				<img src="../static/images/loginimage.png">
+				<div class="inputs">
+					<p>Email</p>
+					<input type="email" placeholder="Enter Email" id="username" name="username">
+					<p>Password</p>
+					<input type="password" placeholder="Enter Password" id="password" name="password">
+                    <input type="submit" value="Login" id="login">
+					<a href="" id="forgot">forgot password?</a>
+                    {% if message %}
+                        <p>{{ message }}</p>
+                    {% endif %}
+					<p id="dont">Don't have an account?<a href="register" id="#signupspan">Signup</a></p>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

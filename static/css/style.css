@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Roboto+Condensed:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,500;1,700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    position: fixed;
+}
+nav{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #252B48;
+    color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo span{
+    font-size: 2rem;
+}
+
+#menu{
+    margin-right: 20px;
+}
+
+#menu:hover{
+    background-color: #D5FFE4;
+    border-radius: 5px;
+    cursor: pointer;
+    color: black;
+}
+
+.logo h1{
+    font-size: 2.2rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navOptions a{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 1.5rem;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #D5FFE4;
+}
+
+.navOptions a span{
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+.navOptions a:hover{
+    background-color: #D5FFE4;
+    color: black;
+}
+
+main{
+    width: 100%;
+    height: 89vh;
+    display: flex;
+    position: fixed;
+    top: 75px;
+}
+.sidenav{
+    height: 87vh;
+    border-right: 2px solid black;
+    flex-basis: 20%;
+    overflow-y: scroll;
+    transition: 0.5s;
+    /* background-color: red; */
+    /* border: 2px solid yellow; */
+}
+
+.sidenav a{
+    text-decoration: none;
+    color: black;
+}
+
+.sidenav a p{
+    display: flex;
+    align-items: center;
+    margin: 10px 0px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sidenav a p span{
+    margin: 0px 10px;
+    font-size: 2rem;
+}
+
+.sidenav a p:hover, #image, #text, #hand, #pdf,#bookmark, #history{
+    background-color: #D5FFE4;
+    box-shadow: 2px 2px 10px grey;
+}
+
+::-webkit-scrollbar{
+    height: 8px;
+	width: 5px;
+}
+::-webkit-scrollbar-track{
+	background: none;
+}
+::-webkit-scrollbar-thumb{
+	background: transparent;
+	border-radius: 5px;
+}
+.sidenav:hover::-webkit-scrollbar-thumb{
+	background: #717171;
+}
+::-webkit-scrollbar-thumb:hover{
+	background: #888;
+}
+
+.container{
+    flex-basis: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    height: 87vh;
+    /* background-color: red; */
+    /* border: 2px solid yellow; */
+    padding: 0px 0px 40px 0px;
+}
+.container.active{
+    flex-basis: 100%;
+}
+
+.container h2{
+    font-size: 2.5rem;
+    margin: 20px 0px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.container h2 span{
+    color: blueviolet;
+}
+
+form{
+    width: 100%;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 40px;
+}
+.outerbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-width: 320px;
+}
+.boxes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 20px;
+    width: 100%;
+    position: relative;
+    margin: 20px 0px;
+}
+
+.inputbox,
+.outputbox{
+    min-width: 320px;
+    flex: 1 1;
+    padding: 20px;
+    background-color: #EADBC8;
+	box-shadow: 2px 2px 10px grey;
+    position: relative;
+	border-radius: 15px;
+}
+
+
+
+.from,
+.to{
+	margin-top: 15px;
+	width: 90%;
+	display: flex;
+	align-items: center;
+	font-family: Poppins;
+}
+.from p,.to p{
+	margin-right: 20px;
+}
+
+.options_lang_from,.options_lang_to{
+	width: 100%;
+}
+
+.options_lang_from ul,.options_lang_to ul{
+	list-style: none;
+}
+
+.options_lang_from ul li, 
+.options_lang_to ul li{
+    width: 100%;
+}
+
+select{
+    outline: none;
+	width: 100%;
+	border-radius: 13px;
+	height: 30px;
+}
+
+#sync{
+    font-size: 30px;
+	background-color: lightblue;
+	border-radius: 50%;
+	padding: 2px;
+	border: 2px solid black;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    z-index: 1;
+    top: 8%;
+}
+
+#translate-btn{
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 10px;
+    background-color: #252B48;
+    border: none;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 15px;
+    margin-bottom: 0px;
+    border: 2px solid #252B48;
+}
+
+#limit{
+    position: absolute;
+    bottom: 12%;
+    right: 8%;
+    color: red;
+    font-family: 'Poppins', sans-serif;
+}
+
+#translate-btn:hover{
+    background-color: #D5FFE4;
+    color: black;
+    cursor: pointer;
+}
+
+    .button {
+        font-size: 1.5rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        background-color: #252B48;
+        border: none;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        border-radius: 15px;
+        margin-bottom: 0px;
+        border: 2px solid #252B48;
+    }
+    .button:hover{
+    background-color: #D5FFE4;
+    color: black;
+    cursor: pointer;
+}
+
+    #imageBox {
+        max-width: 600px;
+        margin-top: 20px;
+    }
+
+
+@media (max-width: 744px){
+    #sync{
+        top: 48%;
+        transform: rotate(90deg);
+    }
+    #limit{
+        bottom: 12%;
+        right: 8%;   
+    }
+    .sidenav{
+        position: absolute;
+        margin-left: -300px;
+        z-index: 2;
+        background-color: white;
+        height: 95vh;
+    }
+    .container{
+        flex-basis: 100%;
+    }
+    .sidenav.active{
+        margin-left: 0px;
+    }
+    main{
+        height: 94vh;
+    }
+}
+@media (max-width: 560px){
+    .navOptions a p{
+        display: none;
+    }
+    #limit{
+        font-size: 0.8rem;
+    }
+    .navOptions a span{
+        margin-right: 0px;
+        font-size: 1.3rem;
+    }
+
+    .logo h1{
+        font-size: 1.3rem;
+    }
+
+    .logo span{
+        font-size: 1.5rem;
+    }
+
+    #menu{
+        margin-right: 10px;
+    }
+    .container h2{
+        font-size: 2rem;
+    }
+    main{
+        top: 50px;
+    }
+    .container{
+        height: 95vh;
+    }
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TranslatoVerse</title>
+
+    <!-- google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- css file -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/bookmark.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <span class="material-symbols-outlined" id="menu">
+                menu
+            </span>
+            <span class="material-symbols-outlined" id="logo">
+                language
+            </span>
+            <h1>TranslatoVerse</h1>
+        </div>
+        <div class="navOptions">
+            <a href=""><span class="material-symbols-outlined">
+                person
+            </span><p>Profile</p></a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="sidenav active">
+            <a href="text">
+                <p>
+                    <span class="material-symbols-outlined">
+                         text_fields
+                    </span>Text to Text
+                </p>
+            </a>
+            <a href="">
+                <p>
+                    <span class="material-symbols-outlined">
+                        speech_to_text
+                    </span>Speech to Text
+                </p>
+            </a>
+            <a href="img">
+                <p>
+                    <span class="material-symbols-outlined">
+                        image
+                    </span>Image to text
+                </p>
+            </a>
+            <a href="pdf">
+                <p>
+                    <span class="material-symbols-outlined">
+                        description
+                    </span>Document to text
+                </p>
+            </a>
+            <a href="hand">
+                <p>
+                    <span class="material-symbols-outlined">
+                        edit_note
+                    </span>Handwritten to text
+                </p>
+            </a>
+            <a href="bookmark">
+                <p id="bookmark">
+                    <span class="material-symbols-outlined">
+                        bookmark
+                    </span>Bookmark
+                </p>
+            </a>
+            <a href="history">
+                <p>
+                    <span class="material-symbols-outlined">
+                        history
+                    </span>History
+                </p>
+            </a>
+            <hr/>
+            <a href=""><p><span class="material-symbols-outlined">
+                help
+            </span>Help</p></a>
+            <a href=""><p><span class="material-symbols-outlined">
+                phone_in_talk
+            </span>Contact Us</p></a>
+            <a href=""><p><span class="material-symbols-outlined">
+                report
+            </span>Report</p></a>
+            <a href="feedback"><p><span class="material-symbols-outlined">
+                add_comment
+            </span>Feedback</p></a>
+            <a href=""><p><span class="material-symbols-outlined">
+                settings
+            </span>Settings</p></a>
+            <a href="/logout"><p><span class="material-symbols-outlined">
+                login
+            </span>Log Out</p></a>
+        </div>
+        <div class="container">
+            <div class="no_cont">
+                <h4>No bookmarks here.</h4>
+            </div>
+            <div class="undo">
+                <p>Your bookmark is removed</p>
+                <button id="undo">Undo</button>
+            </div>
+            <div class="bookmark">
+                <h2>Your Bookmarks</h2>
+                <div class="bookmark1">
+                    <!-- <span class="material-symbols-outlined" id="close">
+                            close
+                    </span> -->
+                    <p><span>Format:</span> Text to Text translation</p>
+                    <p><span>Source Text:</span> This is a sample text in english...</p>
+                       <p><span>Target Language:</span> Hindi</p>
+                       <!-- <p><span>Translated Text:</span></p> -->
+                       <p><span>Downloaded format:</span>  -</p>
+                       <!-- <p><span>Date:</span>23-09-2023</p>
+                      <p><span>Status:</span>Completed</p> -->
+                       <!-- <button  id="bookmark">Bookmark</button>
+                       <button id="bookmarked">Bookmarked</button> -->
+                       <p id="remove">Remove Bookmark</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../static/js/bookmark.js"></script>
+</body>
+</html>

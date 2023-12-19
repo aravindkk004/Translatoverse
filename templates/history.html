@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation History</title>
+
+    <!-- google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- css file -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/history.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <span class="material-symbols-outlined" id="menu">
+                menu
+            </span>
+            <span class="material-symbols-outlined" id="logo">
+                language
+            </span>
+            <h1>TranslatoVerse</h1>
+        </div>
+        <div class="navOptions">
+            <a href=""><span class="material-symbols-outlined">
+                person
+            </span><p>Profile</p></a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="sidenav active">
+            <a href="text">
+                <p>
+                    <span class="material-symbols-outlined">
+                         text_fields
+                    </span>Text to Text
+                </p>
+            </a>
+            <a href="">
+                <p>
+                    <span class="material-symbols-outlined">
+                        speech_to_text
+                    </span>Speech to Text
+                </p>
+            </a>
+            <a href="img">
+                <p>
+                    <span class="material-symbols-outlined">
+                        image
+                    </span>Image to text
+                </p>
+            </a>
+            <a href="pdf">
+                <p>
+                    <span class="material-symbols-outlined">
+                        description
+                    </span>Document to text
+                </p>
+            </a>
+            <a href="hand">
+                <p>
+                    <span class="material-symbols-outlined">
+                        edit_note
+                    </span>Handwritten to text
+                </p>
+            </a>
+            <a href="bookmark">
+                <p>
+                    <span class="material-symbols-outlined">
+                        bookmark
+                    </span>Bookmark
+                </p>
+            </a>
+            <a href="history">
+                <p id="history">
+                    <span class="material-symbols-outlined">
+                        history
+                    </span>History
+                </p>
+            </a>
+            <hr/>
+            <a href=""><p><span class="material-symbols-outlined">
+                help
+            </span>Help</p></a>
+            <a href=""><p><span class="material-symbols-outlined">
+                phone_in_talk
+            </span>Contact Us</p></a>
+            <a href=""><p><span class="material-symbols-outlined">
+                report
+            </span>Report</p></a>
+            <a href="feedback"><p><span class="material-symbols-outlined">
+                add_comment
+            </span>Feedback</p></a>
+            <a href=""><p><span class="material-symbols-outlined">
+                settings
+            </span>Settings</p></a>
+            <a href="/logout"><p><span class="material-symbols-outlined">
+                login
+            </span>Log Out</p></a>
+        </div>
+        <div class="history_container">
+            <h1>Translation History</h1>
+            <div class="histories">
+                <ul>
+                    {% for item in translation_history %}
+                        <li>
+                            <strong>Translation Type:</strong> {{ item.translation_type }}<br>
+                            <strong>Translation Input:</strong>
+                            {% if item.translation_input | length > 50 %}
+                                {{ item.translation_input[:50] }}...
+                                <span class="full-input" style="display: none;">{{ item.translation_input }}</span>
+                                <span class="more-input" style="color: blue; cursor: pointer;">(more)</span>
+                                <span class="collapse-input" style="display: none; color: blue; cursor: pointer;">(collapse)</span>
+                            {% else %}
+                                {{ item.translation_input }}
+                            {% endif %}
+                            <br>
+                            
+                            <strong>Translated Content:</strong>
+                            {% if item.translated_content | length > 50 %}
+                                {{ item.translated_content[:50] }}...
+                                <span class="full-content" style="display: none;">{{ item.translated_content }}</span>
+                                <span class="more-content" style="color: blue; cursor: pointer;">(more)</span>
+                                <span class="collapse-content" style="display: none; color: blue; cursor: pointer;">(collapse)</span>
+                            {% else %}
+                                {{ item.translated_content }}
+                            {% endif %}
+                            <br>
+                            
+    
+                            <form action="/delete_translation" method="POST" id="history_form">
+                                <input type="hidden" name="translation_id" value="{{ item.id }}">
+                                <input type="submit" value="Delete" id="delete-btn">
+                            </form>
+                            <!-- <hr> -->
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+           
+        </div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Show full translation input when "(more)" is clicked
+            $("ul").on("click", ".more-input", function() {
+                $(this).hide();
+                $(this).siblings(".full-input").show();
+                $(this).siblings(".collapse-input").show();
+            });
+
+            // Show full translated content when "(more)" is clicked
+            $("ul").on("click", ".more-content", function() {
+                $(this).hide();
+                $(this).siblings(".full-content").show();
+                $(this).siblings(".collapse-content").show();
+            });
+
+            // Collapse translation input when "Collapse" button is clicked
+            $("ul").on("click", ".collapse-input", function() {
+                $(this).hide();
+                $(this).siblings(".full-input").hide();
+                $(this).siblings(".more-input").show();
+            });
+
+            // Collapse translated content when "Collapse" button is clicked
+            $("ul").on("click", ".collapse-content", function() {
+                $(this).hide();
+                $(this).siblings(".full-content").hide();
+                $(this).siblings(".more-content").show();
+            });
+        });
+    </script>
+
+</body>
+</html>

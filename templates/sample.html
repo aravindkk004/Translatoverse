@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TranslatoVerse</title>
+
+    <!-- google icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- css file -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/text.css">
+
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            <span class="material-symbols-outlined" id="menu">
+                menu
+            </span>
+            <span class="material-symbols-outlined" id="logo">
+                language
+            </span>
+            <h1>TranslatoVerse</h1>
+        </div>
+        <div class="navOptions">
+            <a href=""><span class="material-symbols-outlined">
+                    person
+                </span>
+                <p>Profile</p>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="sidenav active">
+            <a href="text">
+                <p id="text">
+                    <span class="material-symbols-outlined">
+                        text_fields
+                    </span>Text to Text
+                </p>
+            </a>
+            <a href="speech">
+                <p>
+                    <span class="material-symbols-outlined">
+                        speech_to_text
+                    </span>Speech to Text
+                </p>
+            </a>
+            <a href="img">
+                <p>
+                    <span class="material-symbols-outlined">
+                        image
+                    </span>Image to text
+                </p>
+            </a>
+            <a href="pdf">
+                <p>
+                    <span class="material-symbols-outlined">
+                        description
+                    </span>Document to text
+                </p>
+            </a>
+            <a href="hand">
+                <p>
+                    <span class="material-symbols-outlined">
+                        edit_note
+                    </span>Handwritten to text
+                </p>
+            </a>
+            <a href="bookmark">
+                <p>
+                    <span class="material-symbols-outlined">
+                        bookmark
+                    </span>Bookmark
+                </p>
+            </a>
+            <a href="history">
+                <p>
+                    <span class="material-symbols-outlined">
+                        history
+                    </span>History
+                </p>
+            </a>
+            <hr />
+            <a href="">
+                <p><span class="material-symbols-outlined">
+                        help
+                    </span>Help</p>
+            </a>
+            <a href="">
+                <p><span class="material-symbols-outlined">
+                        phone_in_talk
+                    </span>Contact Us</p>
+            </a>
+            <a href="">
+                <p><span class="material-symbols-outlined">
+                        report
+                    </span>Report</p>
+            </a>
+            <a href="feedback">
+                <p><span class="material-symbols-outlined">
+                        add_comment
+                    </span>Feedback</p>
+            </a>
+            <a href="">
+                <p><span class="material-symbols-outlined">
+                        settings
+                    </span>Settings</p>
+            </a>
+            <a href="/logout">
+                <p><span class="material-symbols-outlined">
+                        login
+                    </span>Log Out</p>
+            </a>
+        </div>
+        <div class="container">
+            <h2>Translate your <span>text</span> here.</h2>
+            <form action="" method="POST" id="translationForm">
+                <div class="outerbox">
+
+                    <div class="boxes">
+                        <div class="inputbox">
+                            <div class="from">
+                                <p>From:</p>
+                                <div class="options_lang_from">
+                                    <ul>
+                                        <li>
+                                            <select>
+                                                <option value="en-US">English</option>
+                                            </select>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="textarea-ip">
+                                <textarea class="input-text-area" id="inputText" maxlength="5000"
+                                    placeholder="Your text." name="input">{{ input_text }}</textarea>
+                                <p id="limit"><span id="input-chars">0</span> / 5000</p>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined" id="sync">sync_alt</span>
+                        <div class="outputbox">
+                            <div class="to">
+                                <p>To:</p>
+                                <div class="options_lang_to">
+                                    <ul>
+                                        <li>
+                                            <select name="destination_language">
+                                                <option value="en-US">English</option>
+                                            </select>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="textarea-op">
+                                <textarea name="output" placeholder="Translated text will appear here." maxlength="5000"
+                                    id="output" class="output-text-area"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="listenButton" class="button">Listen</button>
+                    <p id="translateButton" class="button">Listen</p>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        document.getElementById('listenButton').addEventListener('click', function () {
+            // Change button text to 'Listening...'
+            document.getElementById('translateButton').innerText = 'Listening...';
+
+            // Make AJAX request to Flask route for speech recognition
+            fetch('/speech_recognition', {
+                method: 'POST'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Display recognized text in inputText and change button text back to 'Translate'
+                    document.getElementById('inputText').value = data.recognized_text;
+                    document.getElementById('translateButton').innerText = 'Translate';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+
+        // Modify the existing event listener for the Translate button in script.js
+        document.getElementById('translateButton').addEventListener('click', function () {
+            // Your existing translation logic here
+            let input_text = document.getElementById("inputText").value
+            let selectedLanguage = document.querySelector('select[name="destination_language"]').value;
+
+            let formData = new FormData();
+            formData.append('inputText', input_text)
+            formData.append('destination_language', selectedLanguage);
+
+            fetch('/texttranslate', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.translated_text) {
+                    document.getElementById('output').value = data.translated_text;
+                } else {
+                    console.error('Error:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+        
+
+    </script>
+
+    <script src="../static/js/language.js"></script>
+    <script src="../static/js/script.js"></script>
+    <script src="../static/js/text.js"></script>
+</body>
+
+</html>

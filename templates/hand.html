@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TranslatoVerse</title>
+
+    <!-- google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- css file -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/image.css">
+    <style>
+    .button {
+        font-size: 1.5rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        background-color: #252B48;
+        border: none;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        border-radius: 15px;
+        margin-bottom: 0px;
+        border: 2px solid #252B48;
+    }
+    .button:hover{
+    background-color: #D5FFE4;
+    color: black;
+    cursor: pointer;
+}
+
+    #imageBox {
+        max-width: 600px;
+        margin-top: 20px;
+    }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <span class="material-symbols-outlined" id="menu">
+                menu
+            </span>
+            <span class="material-symbols-outlined" id="logo">
+                language
+            </span>
+            <h1>TranslatoVerse</h1>
+        </div>
+        <div class="navOptions">
+            <a href=""><span class="material-symbols-outlined">
+                person
+            </span><p>Profile</p></a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="sidenav active">
+            <a href="text">
+                <p>
+                    <span class="material-symbols-outlined">
+                         text_fields
+                    </span>Text to Text
+                </p>
+            </a>
+            <a href="speech">
+                <p>
+                    <span class="material-symbols-outlined">
+                        speech_to_text
+                    </span>Speech to Text
+                </p>
+            </a>
+            <a href="img">
+                <p>
+                    <span class="material-symbols-outlined">
+                        image
+                    </span>Image to text
+                </p>
+            </a>
+            <a href="pdf">
+                <p>
+                    <span class="material-symbols-outlined">
+                        description
+                    </span>Document to text
+                </p>
+            </a>
+            <a href="hand">
+                <p id="hand">
+                    <span class="material-symbols-outlined">
+                        edit_note
+                    </span>Handwritten to text
+                </p>
+            </a>
+            <a href="bookmark">
+                <p>
+                    <span class="material-symbols-outlined">
+                        bookmark
+                    </span>Bookmark
+                </p>
+            </a>
+            <a href="history">
+                <p>
+                    <span class="material-symbols-outlined">
+                        history
+                    </span>History
+                </p>
+            </a>
+            <hr/>
+            <a href=""><p><span class="material-symbols-outlined">
+                help
+            </span>Help</p></a>
+            <a href=""><p><span class="material-symbols-outlined">
+                phone_in_talk
+            </span>Contact Us</p></a>
+            <a href=""><p><span class="material-symbols-outlined">
+                report
+            </span>Report</p></a>
+            <a href="feedback"><p><span class="material-symbols-outlined">
+                add_comment
+            </span>Feedback</p></a>
+            <a href=""><p><span class="material-symbols-outlined">
+                settings
+            </span>Settings</p></a>
+            <a href="/logout"><p><span class="material-symbols-outlined">
+                login
+            </span>Log Out</p></a>
+        </div>
+        <div class="container">
+            <h2>Translate your <span>Handwritten image</span> here.</h2>
+            <form action="/img" method="post" id="translationForm" enctype="multipart/form-data">
+                <div class="outerbox">
+                    <div class="boxes">
+                        <div class="inputbox">
+                            <div class="from">
+                                <p>From:</p>
+                                <div class="options_lang_from">
+                                    <ul>
+                                        <li>
+                                            <select>
+                                            <option value="en-US">English</option>  
+                                            </select>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="image-box" id="imageBox">
+                                <p>Your selected image will be displayed here.</p>
+                            </div>
+                            <div class="upload">
+                                <label for="imageInput" id="uploadBtn" class="file-input-button">
+                                    Choose Image<span class="material-symbols-outlined">
+                                        cloud_upload
+                                    </span>
+                                </label>
+                                <input type="file" id="imageInput" name="image" class="file-input" accept="image/*">
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined" id="sync">sync_alt</span>
+                        <div class="outputbox">
+                            <div class="to">
+                                <p>To:</p>
+                                <div class="options_lang_to">
+                                    <ul>
+                                        <li>
+                                            <select name="destination_language">
+                                                <option value="en-US">English</option>   
+                                            </select>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="textarea-op">
+                                <textarea name="output" placeholder="Translated text will appear here." maxlength="5000" id="output" class="output-text-area"></textarea>
+                            </div>
+                            <div class="download">
+                                <button type="submit" id="download-btn">Download<span class="material-symbols-outlined">
+                                    download
+                                </span></button>
+                            </div>
+                        </div>
+                    </div>
+                <p id="translateButton" class="button">Translate</p>
+            </div>
+            </form>
+        </div>
+    </main>
+
+    <footer></footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        document.getElementById('imageInput').addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageBox = document.getElementById('imageBox');
+                    imageBox.innerHTML = `<img src="${e.target.result}" alt="Selected Image" style="max-width:100%;">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('translateButton').addEventListener('click', function() {
+            let fileInput = document.getElementById('imageInput').files[0];
+            let selectedLanguage = document.querySelector('select[name="destination_language"]').value;
+
+            let formData = new FormData();
+            formData.append('image', fileInput);
+            formData.append('destination_language', selectedLanguage);
+
+            fetch('/translate', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.translated_text) {
+                    document.getElementById('output').value = data.translated_text;
+                } else {
+                    console.error('Error:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+
+    <script src="../static/js/language.js"></script>
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
